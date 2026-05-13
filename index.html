@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en-NL">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paw Balance | Pet Care With Gym Rewards</title>
+  <meta name="description" content="Trusted pet care for busy urban pet owners with instant trust, consistent quality, zero admin, and gym rewards." />
+  <style>
+    :root {
+      --green: #31584a;
+      --green-2: #4d7968;
+      --sage: #e6efe8;
+      --cream: #fdf7f3;
+      --rose: #edd3d3;
+      --rose-2: #dca7aa;
+      --text: #28342f;
+      --muted: #6e7874;
+      --white: #ffffff;
+      --accent: #d7888e;
+      --accent-dark: #8c5b60;
+      --shadow: 0 22px 60px rgba(49, 88, 74, 0.12);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #fffaf7 0%, var(--cream) 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1140px, calc(100% - 36px)); margin: 0 auto; }
+
+    .promo-bar {
+      background: linear-gradient(135deg, var(--accent), var(--rose-2));
+      color: #fff;
+      font-weight: 900;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+    }
+    .promo-bar a { text-decoration: underline; text-underline-offset: 3px; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(253, 247, 243, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(49, 88, 74, 0.07);
+    }
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--green);
+      font-weight: 900;
+      font-size: 1.35rem;
+    }
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--green), var(--accent));
+      color: #fff8f4;
+      display: grid;
+      place-items: center;
+      font-size: 1.5rem;
+      box-shadow: 0 10px 22px rgba(215, 136, 142, 0.22);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 24px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn-primary { background: linear-gradient(135deg, var(--green), var(--green-2)); color: var(--white); }
+    .btn-accent { background: linear-gradient(135deg, var(--accent), var(--rose-2)); color: #ffffff; }
+    .btn-light { background: var(--white); color: var(--green); border: 1px solid rgba(49, 88, 74, 0.12); }
+
+    section { padding: 74px 0; }
+    .hero { padding: 82px 0 48px; }
+    .eyebrow {
+      display: inline-flex;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--sage), #f6ebe7);
+      color: var(--green);
+      font-weight: 900;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1, h2, h3 { color: var(--green); line-height: 1.06; }
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.1rem, 7vw, 6.2rem);
+      letter-spacing: -0.06em;
+      max-width: 860px;
+    }
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      letter-spacing: -0.04em;
+    }
+    .lead {
+      margin: 22px 0 28px;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2vw, 1.22rem);
+      max-width: 700px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.03fr 0.97fr;
+      gap: 42px;
+      align-items: center;
+    }
+    .hero-actions, .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .quick-note { margin-top: 16px; color: var(--accent-dark); font-weight: 800; }
+
+    .hero-visual {
+      min-height: 560px;
+      border-radius: 42px;
+      background: linear-gradient(145deg, #f7ebe3, #fffaf7);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+      display: flex;
+      align-items: end;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 24px 24px 154px;
+      border-radius: 32px;
+      background-image: linear-gradient(180deg, rgba(49,88,74,0.02), rgba(49,88,74,0.18)), url("https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
+      box-shadow: inset 0 -70px 90px rgba(49, 88, 74, 0.14);
+    }
+    .booking-card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(49, 88, 74, 0.08);
+      border-radius: 30px;
+      padding: 22px;
+      display: grid;
+      gap: 10px;
+      box-shadow: 0 12px 30px rgba(49, 88, 74, 0.08);
+    }
+    .booking-card strong { color: var(--green); font-size: 1.3rem; }
+    .booking-card span { color: var(--muted); font-weight: 600; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .section-head p { color: var(--muted); max-width: 540px; font-size: 1.05rem; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    .pill-card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 22px;
+      padding: 20px;
+      border: 1px solid rgba(49, 88, 74, 0.07);
+      box-shadow: 0 12px 34px rgba(49, 88, 74, 0.05);
+    }
+    .pill-card b { display: block; color: var(--green); margin-bottom: 4px; }
+    .pill-card span { color: var(--muted); font-size: 0.94rem; }
+
+    .photo-panel {
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      position: relative;
+      min-height: 430px;
+      background: var(--white);
+    }
+    .photo-panel img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-badge {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      background: rgba(255,255,255,0.95);
+      color: var(--green);
+      border-radius: 20px;
+      padding: 14px 16px;
+      font-weight: 900;
+      box-shadow: 0 10px 28px rgba(49,88,74,0.12);
+      max-width: 340px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid rgba(49, 88, 74, 0.07);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(49, 88, 74, 0.06);
+    }
+    .card img { width: 100%; height: 210px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.45rem; margin-bottom: 10px; }
+    .card p { color: var(--muted); margin-bottom: 18px; }
+
+    .dark-card {
+      background: linear-gradient(180deg, var(--green), var(--green-2));
+      color: var(--white);
+      border-radius: 28px;
+      padding: 24px;
+      min-height: 210px;
+      box-shadow: 0 14px 30px rgba(49, 88, 74, 0.12);
+    }
+    .dark-card h3 { color: var(--white); margin-bottom: 10px; }
+    .dark-card p { color: rgba(255,255,255,0.82); }
+    .number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.16);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 26px;
+    }
+
+    .price-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(49, 88, 74, 0.07);
+      box-shadow: 0 16px 40px rgba(49, 88, 74, 0.06);
+    }
+    .price-card header {
+      padding: 22px 24px;
+      background: linear-gradient(135deg, var(--green), var(--green-2));
+      color: var(--white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 900;
+    }
+    .price-card ul { list-style: none; }
+    .price-card li {
+      padding: 17px 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(49, 88, 74, 0.08);
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .price-card li:last-child { border-bottom: 0; }
+    .price { color: var(--accent-dark); font-weight: 900; }
+    .price-cta { padding: 22px 24px 24px; }
+    .price-cta .btn { width: 100%; }
+
+    .gym-highlight {
+      background: linear-gradient(135deg, #fff, #fff7f5);
+      border: 1px solid rgba(215, 136, 142, 0.25);
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .gym-highlight p { color: var(--muted); font-size: 1.05rem; margin: 12px 0 18px; }
+    .gym-list { list-style: none; display: grid; gap: 12px; color: var(--green); font-weight: 800; }
+    .gym-list li { background: rgba(230, 239, 232, 0.55); border-radius: 16px; padding: 12px 14px; }
+    .gym-visual { display: grid; gap: 16px; }
+    .gym-pass {
+      background: linear-gradient(135deg, var(--green), var(--green-2));
+      color: #fff;
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 18px 36px rgba(49, 88, 74, 0.18);
+    }
+    .gym-pass strong { display: block; font-size: 1.35rem; margin-bottom: 8px; }
+    .gym-pass span { color: rgba(255,255,255,0.82); }
+
+    .reward-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
+    .reward-card {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(49, 88, 74, 0.08);
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+    .reward-card h3 { font-size: 1.7rem; margin-bottom: 10px; }
+    .reward-card p { color: var(--muted); margin-bottom: 16px; }
+    .reward-tag {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--sage), #f6ebe7);
+      color: var(--green);
+      font-weight: 900;
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+    }
+    .qr-card {
+      width: 132px;
+      height: 132px;
+      border-radius: 18px;
+      background: #fff;
+      border: 10px solid #fff;
+      box-shadow: 0 14px 30px rgba(49, 88, 74, 0.12);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      gap: 5px;
+      padding: 8px;
+    }
+    .qr-card span { background: var(--green); border-radius: 4px; }
+    .qr-card span:nth-child(2),
+    .qr-card span:nth-child(5),
+    .qr-card span:nth-child(8),
+    .qr-card span:nth-child(11),
+    .qr-card span:nth-child(14),
+    .qr-card span:nth-child(17),
+    .qr-card span:nth-child(20),
+    .qr-card span:nth-child(23) { background: var(--accent); }
+
+    .cta-band {
+      background: linear-gradient(135deg, #e4c4c6, #f2dfe0 50%, #dfeae3 100%);
+      color: var(--text);
+      border-radius: 42px;
+      padding: 46px;
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(49, 88, 74, 0.07);
+    }
+    .cta-band h2 { color: var(--green); }
+    .cta-band p { color: var(--muted); margin-top: 14px; font-size: 1.08rem; }
+
+    .booking-section {
+      background: rgba(255,255,255,0.95);
+      border-radius: 42px;
+      padding: 44px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(49, 88, 74, 0.07);
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: start;
+    }
+    .booking-copy p { color: var(--muted); margin: 16px 0 24px; }
+    .booking-copy ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: var(--green);
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    form { display: grid; gap: 14px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    label { display: grid; gap: 8px; color: var(--green); font-weight: 800; font-size: 0.9rem; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(49, 88, 74, 0.12);
+      border-radius: 16px;
+      padding: 14px 15px;
+      background: #fffdfc;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(215, 136, 142, 0.12);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    .form-note { color: var(--muted); font-size: 0.9rem; }
+
+    footer {
+      background: linear-gradient(135deg, var(--green), var(--green-2));
+      color: rgba(255,255,255,0.84);
+      padding: 36px 0;
+      margin-top: 72px;
+    }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+    footer b { color: var(--white); }
+    .floating-cta {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      display: none;
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .hero-grid, .grid-2, .booking-section, .cta-band, .reward-grid, .gym-highlight { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 470px; }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 12px; }
+      .floating-cta { display: inline-flex; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 24px, 1140px); }
+      .hero { padding-top: 46px; }
+      .hero-actions .btn, .cta-actions .btn { width: 100%; }
+      .grid-4, .form-grid, .reward-card { grid-template-columns: 1fr; }
+      .booking-section, .cta-band { padding: 28px; border-radius: 30px; }
+      .hero-photo { inset: 18px 18px 150px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="promo-bar">🎁 Gym offer: first booking = free gym day pass QR · repeat bookings = 30-day gym access QR. <a href="#rewards">See rewards</a></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" aria-label="Paw Balance home">
+        <span class="logo">🐾</span>
+        <span>Paw Balance</span>
+      </a>
+      <div class="nav-links">
+        <a href="#top">Home</a>
+        <a href="#services">Services</a>
+        <a href="#trust">Trust</a>
+        <a href="#pricing">Prices</a>
+        <a href="#rewards">Gym offer</a>
+        <a href="#booking" class="btn btn-primary">Book care</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">For city life that never slows down</span>
+            <h1>Pet care that keeps up with a full urban schedule.</h1>
+            <p class="lead">Paw Balance is for busy urban pet owners who want instant trust, consistent quality, and zero admin — whether it’s a midday gap, a late meeting, evening plans, or a packed weekend.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#booking">Book care today</a>
+              <a class="btn btn-light" href="#rewards">See gym offer</a>
+            </div>
+            <p class="quick-note">First booking unlocks a free gym day pass QR. Loyal customers can unlock 30-day gym access.</p>
+          </div>
+          <div class="hero-visual" aria-label="Urban pet owner relaxing with her pet">
+            <div class="hero-photo"></div>
+            <div class="booking-card">
+              <strong>Need help today?</strong>
+              <span>Same-day pet care plus a first-booking gym day pass QR.</span>
+              <a class="btn btn-accent" href="#booking">Book now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-top:42px">
+          <div class="pill-card"><b>Midday gap</b><span>Your pet gets care while you stay focused.</span></div>
+          <div class="pill-card"><b>Late meeting</b><span>No scrambling to get home in time.</span></div>
+          <div class="pill-card"><b>Evening plans</b><span>Go out knowing everything is handled.</span></div>
+          <div class="pill-card"><b>Weekend commitment</b><span>Reliable support when life fills up.</span></div>
+        </div>
+      </div>
+    </header>
+
+    <section id="who">
+      <div class="container">
+        <div class="grid-2">
+          <div class="photo-panel">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80" alt="Woman with pet at home after work">
+            <div class="photo-badge">Less guilt, less admin, more peace of mind — plus a wellbeing reward for you.</div>
+          </div>
+          <div>
+            <span class="eyebrow">Who it’s for</span>
+            <h2>Made for pet owners whose days don’t run on a fixed schedule.</h2>
+            <p class="lead">If your day moves quickly and your calendar changes often, you need pet care that feels easy, dependable, and instantly trustworthy.</p>
+            <div class="grid-2">
+              <div class="pill-card"><b>Instant trust</b><span>Home access and care handled professionally.</span></div>
+              <div class="pill-card"><b>Consistent quality</b><span>Clear standards, updates, and routines.</span></div>
+              <div class="pill-card"><b>Zero admin</b><span>Fast booking, clear pricing, simple process.</span></div>
+              <div class="pill-card"><b>Wellbeing reward</b><span>Gym QR rewards for first-time and loyal customers.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Services</h2>
+          <p>Flexible pet care built around the moments busy urban owners actually need help.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=80" alt="Dog being walked in the city">
+            <div class="card-content">
+              <h3>Dog walks</h3>
+              <p>30, 45, or 60-minute walks whenever you need them — planned ahead or same day.</p>
+              <a class="btn btn-light" href="#booking">Book a walk</a>
+            </div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=900&q=80" alt="Cat relaxing during a home visit">
+            <div class="card-content">
+              <h3>Home visits for all pets</h3>
+              <p>Food, water, litter or potty break, play, calm time, and a reassuring update.</p>
+              <a class="btn btn-light" href="#booking">Book a visit</a>
+            </div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=900&q=80" alt="Small pet care support">
+            <div class="card-content">
+              <h3>Add-ons</h3>
+              <p>Medication, extra time, second pet, puppy or senior support, and tailored small-pet care.</p>
+              <a class="btn btn-light" href="#booking">Add to booking</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="trust">
+      <div class="container">
+        <div class="section-head">
+          <h2>The trust system</h2>
+          <p>Because handing over your home access and your pet should never feel uncertain.</p>
+        </div>
+        <div class="grid-4">
+          <article class="dark-card"><div class="number">1</div><h3>Secure home access</h3><p>Clear key or lockbox protocols and logged handoffs.</p></article>
+          <article class="dark-card"><div class="number">2</div><h3>Consistent standards</h3><p>Routine checklists, communication rules, and quality control.</p></article>
+          <article class="dark-card"><div class="number">3</div><h3>Proof of care</h3><p>Photo or video update plus a short report after each visit.</p></article>
+          <article class="dark-card"><div class="number">4</div><h3>Reliable backup</h3><p>Backup cover and real support if plans change.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <h2>Simple pricing</h2>
+          <p>Clear, transparent prices with no surprises.</p>
+        </div>
+        <div class="grid-3">
+          <article class="price-card">
+            <header><span>Dog walks</span><span>from €22</span></header>
+            <ul>
+              <li><span>30 minutes</span><span class="price">€22</span></li>
+              <li><span>45 minutes</span><span class="price">€28</span></li>
+              <li><span>60 minutes</span><span class="price">€34</span></li>
+            </ul>
+            <div class="price-cta"><a class="btn btn-primary" href="#booking">Book a walk</a></div>
+          </article>
+          <article class="price-card">
+            <header><span>Pet visits</span><span>from €20</span></header>
+            <ul>
+              <li><span>20 minutes</span><span class="price">€20</span></li>
+              <li><span>30 minutes</span><span class="price">€26</span></li>
+              <li><span>Extra 15 minutes</span><span class="price">€6</span></li>
+            </ul>
+            <div class="price-cta"><a class="btn btn-primary" href="#booking">Book a visit</a></div>
+          </article>
+          <article class="price-card">
+            <header><span>Add-ons</span><span>from €5</span></header>
+            <ul>
+              <li><span>Second pet</span><span class="price">€5</span></li>
+              <li><span>Medication</span><span class="price">€5</span></li>
+              <li><span>Puppy / senior / small pet care</span><span class="price">€6</span></li>
+            </ul>
+            <div class="price-cta"><a class="btn btn-primary" href="#booking">Start booking</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="rewards">
+      <div class="container">
+        <div class="gym-highlight">
+          <div>
+            <span class="eyebrow">Gym partner offer</span>
+            <h2>Book pet care and unlock wellbeing rewards.</h2>
+            <p>This is a key part of Paw Balance: we care for your pet, while you get time and motivation to take care of yourself.</p>
+            <ul class="gym-list">
+              <li>✓ First booking: QR code for a free gym day pass</li>
+              <li>✓ The pass includes access to different gym classes</li>
+              <li>✓ After several bookings: loyalty QR code for 30 days of gym access</li>
+            </ul>
+          </div>
+          <div class="gym-visual">
+            <div class="gym-pass"><strong>Free gym day pass</strong><span>Unlocked after the first Paw Balance booking via QR code.</span></div>
+            <div class="gym-pass"><strong>30-day gym access</strong><span>Loyalty reward after several Paw Balance bookings.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Reward QR codes</h2>
+          <p>Customers receive QR codes to redeem the gym benefits.</p>
+        </div>
+        <div class="reward-grid">
+          <article class="reward-card">
+            <div>
+              <span class="reward-tag">First booking reward</span>
+              <h3>Free gym day pass</h3>
+              <p>After the first Paw Balance booking, the customer receives a QR code for one free gym day pass with access to different classes.</p>
+            </div>
+            <div class="qr-card" aria-label="QR code visual for free gym day pass"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </article>
+          <article class="reward-card">
+            <div>
+              <span class="reward-tag">Loyalty reward</span>
+              <h3>30-day gym access</h3>
+              <p>After several bookings, the customer unlocks a loyalty QR code for 30 days of gym access, helping them build their own routine too.</p>
+            </div>
+            <div class="qr-card" aria-label="QR code visual for 30-day gym access"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <div class="container">
+        <div class="booking-section">
+          <div class="booking-copy">
+            <span class="eyebrow">Book now</span>
+            <h2>Request trusted pet care and unlock the gym offer.</h2>
+            <p>Your first booking unlocks a QR code for a free gym day pass. After several bookings, you can unlock a 30-day gym access QR code.</p>
+            <ul>
+              <li>✓ Same-day options</li>
+              <li>✓ Trusted local carers</li>
+              <li>✓ Photo or video updates after every visit</li>
+              <li>✓ First booking: free gym day pass QR</li>
+              <li>✓ Loyalty: 30-day gym access QR after several bookings</li>
+            </ul>
+          </div>
+          <form action="mailto:hello@pawbalance.nl" method="post" enctype="text/plain">
+            <div class="form-grid">
+              <label>Your name<input name="name" type="text" placeholder="Your name" required></label>
+              <label>Email<input name="email" type="email" placeholder="you@email.com" required></label>
+            </div>
+            <div class="form-grid">
+              <label>Pet type
+                <select name="pet_type" required>
+                  <option value="">Choose pet type</option>
+                  <option>Dog</option>
+                  <option>Cat</option>
+                  <option>Rabbit</option>
+                  <option>Small pet</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>Pet name<input name="pet_name" type="text" placeholder="Pet name" required></label>
+            </div>
+            <div class="form-grid">
+              <label>Service
+                <select name="service" required>
+                  <option value="">Choose service</option>
+                  <option>Dog walk - 30 min</option>
+                  <option>Dog walk - 45 min</option>
+                  <option>Dog walk - 60 min</option>
+                  <option>Home visit - 20 min</option>
+                  <option>Home visit - 30 min</option>
+                  <option>Medication support</option>
+                </select>
+              </label>
+              <label>Preferred date<input name="date" type="date" required></label>
+            </div>
+            <label>Notes<textarea name="notes" placeholder="Routine, access details, feeding instructions, preferred time..."></textarea></label>
+            <button class="btn btn-primary" type="submit">Request booking</button>
+            <p class="form-note">This demo form opens your email app. Reward QR codes can be connected to a real gym partner system later.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="btn btn-accent floating-cta" href="#booking">Book now</a>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><b>Paw Balance</b><br>Trusted care. Happy pets. Balanced lives.</div>
+      <div>hello@pawbalance.nl · +31 6 1234 5678 · Netherlands</div>
+    </div>
+  </footer>
+</body>
+</html>
